@@ -1,0 +1,21 @@
+{
+    "name" : "itdoors/commonbundle",
+    "description" : "Common bundle",
+    "keywords" : ["common bundle"],
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "ppecheny",
+        "email" : "pp@itdoors.com.ua"
+    }],
+    "license" : "MIT",
+    "require" : {
+        "php":                      ">=5.3.17"
+    },
+    "minimum-stability": "dev",
+    "autoload" : {
+        "psr-0" : {
+            "ITDoors\\CommonBundle" : ""
+        }
+    },
+    "target-dir" : "ITDoors/CommonBundle"
+}

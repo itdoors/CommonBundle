@@ -1,0 +1,10 @@
+parameters:
+    itdoors_common.hidden_entity.class: ITDoors\CommonBundle\Form\HiddenEntityType
+
+services:
+
+    itdoors_utility.form_type.hidden_entity:
+        class: %itdoors_common.hidden_entity.class%
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: hidden_entity }
