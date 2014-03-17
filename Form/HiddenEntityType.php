@@ -8,6 +8,12 @@ use ITDoors\CommonBundle\Form\DataTransformer\HiddenEntityDataTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * ITDoorsCommonBundle
+ *
+ * @author Pavel Pecheny <ppecheny@gmail.com>
+ *
+ */
 class HiddenEntityType extends AbstractType
 {
     /**
@@ -23,12 +29,23 @@ class HiddenEntityType extends AbstractType
         $this->om = $om;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $transformer = new HiddenEntityDataTransformer($this->om, $options['entity']);
         $builder->addModelTransformer($transformer);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -38,11 +55,17 @@ class HiddenEntityType extends AbstractType
         ));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getParent()
     {
         return 'hidden';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return 'hidden_entity';

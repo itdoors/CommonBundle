@@ -6,6 +6,12 @@ use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
 
+/**
+ * HiddenEntityDataTransformer
+ *
+ * @author Pavel Pecheny <ppecheny@gmail.com>
+ *
+ */
 class HiddenEntityDataTransformer implements DataTransformerInterface
 {
     /**
@@ -16,7 +22,7 @@ class HiddenEntityDataTransformer implements DataTransformerInterface
 
     /**
      * @param ObjectManager $om
-     * @param object $entity
+     * @param object        $entity
      */
     public function __construct(ObjectManager $om, $entity)
     {
@@ -27,8 +33,9 @@ class HiddenEntityDataTransformer implements DataTransformerInterface
     /**
      * Transforms an object to a hidden id.
      *
-     * @param  object|null $object
-     * @return int id
+     * @param object|null $object
+     *
+     * @return int         id
      */
     public function transform($object)
     {
@@ -42,7 +49,8 @@ class HiddenEntityDataTransformer implements DataTransformerInterface
     /**
      * Transforms an id to an object.
      *
-     * @param  string $id
+     * @param string $id
+     *
      * @throws TransformationFailedException
      *
      * @return Object|null
@@ -56,8 +64,7 @@ class HiddenEntityDataTransformer implements DataTransformerInterface
 
         $object = $this->om
             ->getRepository($this->entity)
-            ->find($id)
-        ;
+            ->find($id);
 
         if (null === $object) {
             throw new TransformationFailedException();

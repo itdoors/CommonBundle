@@ -11,6 +11,12 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class DaterangeType extends AbstractType
 {
+    /**
+     * {@inheritDoc}
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -39,6 +45,11 @@ class DaterangeType extends AbstractType
             ));
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -49,11 +60,17 @@ class DaterangeType extends AbstractType
         ));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getParent()
     {
         return 'text';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return 'daterange';

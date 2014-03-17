@@ -3,7 +3,15 @@
 namespace ITDoors\CommonBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Session\Session;
 
+/**
+ * BaseFilterController
+ *
+ * @author Pavel Pecheny <ppecheny@gmail.com>
+ *
+ */
 class BaseFilterController extends Controller
 {
     protected $filterNamespace = 'base.sales.filters';
@@ -12,6 +20,8 @@ class BaseFilterController extends Controller
 
     /**
      * Executes filter clear action
+     *
+     * @return string
      */
     public function filterClearAction()
     {
@@ -22,6 +32,8 @@ class BaseFilterController extends Controller
 
     /**
      * Processes filters for view
+     *
+     * @return Form
      */
     public function processFilters()
     {
@@ -34,26 +46,31 @@ class BaseFilterController extends Controller
 
     /**
      * Executes filter action
+     *
+     * @return string
      */
     public function filterAction()
     {
         $filters = $this->get('request')->request->get($this->filterFormName);
 
-        if (!isset($filters['reset']))
-        {
+        if (!isset($filters['reset'])) {
             $this->setFilters($filters);
-        }
-        else
-        {
+        } else {
             $this->clearFilters();
         }
 
         return $this->redirect($this->generateUrl($this->baseRoute));
     }
 
+    /**
+     * Sets filter to the session
+     *
+     * @param mixed[] $filters
+     * @param string  $filterNamespace
+     */
     public function setFilters($filters, $filterNamespace = '')
     {
-        /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
+        /** @var Session $session */
         $session = $this->get('session');
 
         $filterNamespace = $filterNamespace ? $filterNamespace : $this->filterNamespace;
@@ -61,9 +78,16 @@ class BaseFilterController extends Controller
         $session->set($filterNamespace, $filters);
     }
 
+    /**
+     * Gets filters from session
+     *
+     * @param string $filterNamespace
+     *
+     * @return mixed[]
+     */
     public function getFilters($filterNamespace = '')
     {
-        /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
+        /** @var Session $session */
         $session = $this->get('session');
 
         $filterNamespace = $filterNamespace ? $filterNamespace : $this->filterNamespace;
@@ -71,11 +95,20 @@ class BaseFilterController extends Controller
         return $session->get($filterNamespace);
     }
 
+    /**
+     * Clears session data
+     */
     public function clearFilters()
     {
         $this->setFilters(array());
     }
 
+    /**
+     * Adds record to session
+     *
+     * @param string $key
+     * @param string $value
+     */
     public function addToFilters($key, $value)
     {
         $filters = $this->getFilters();
@@ -85,24 +118,35 @@ class BaseFilterController extends Controller
         $this->setFilters($filters);
     }
 
+    /**
+     * Removes record from session by key
+     *
+     * @param string $key
+     */
     public function removeFromFilters($key)
     {
         $filters = $this->getFilters();
 
-        if (isset($filters[$key]))
-        {
+        if (isset($filters[$key])) {
             unset($filters[$key]);
         }
 
         $this->setFilters($filters);
     }
 
+    /**
+     * Retruns filter value by key
+     *
+     * @param string $key
+     * @param string $default
+     *
+     * @return mixed
+     */
     public function getFilterValueByKey($key, $default = null)
     {
         $filters = $this->getFilters();
 
-        if (isset($filters[$key]))
-        {
+        if (isset($filters[$key])) {
             return $filters[$key];
         }
 

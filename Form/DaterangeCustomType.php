@@ -4,13 +4,18 @@ namespace ITDoors\CommonBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * DaterangeCustomType
  */
 class DaterangeCustomType extends AbstractType
 {
+    /**
+     * {@inheritDoc}
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -24,11 +29,17 @@ class DaterangeCustomType extends AbstractType
             ));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getParent()
     {
         return 'daterange';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return 'daterangecustom';
