@@ -1,10 +1,22 @@
 parameters:
     itdoors_common.hidden_entity.class: ITDoors\CommonBundle\Form\HiddenEntityType
+    itdoors_common.form_type.daterange.class: ITDoors\CommonBundle\Form\DaterangeType
+    itdoors_common.form_type.daterangecustom.class: ITDoors\CommonBundle\Form\DaterangeCustomType
 
 services:
 
-    itdoors_utility.form_type.hidden_entity:
+    itdoors_common.form_type.hidden_entity:
         class: %itdoors_common.hidden_entity.class%
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type, alias: hidden_entity }
+
+    itdoors_common.form_type.daterange:
+        class: %itdoors_common.form_type.daterange.class%
+        tags:
+            - { name: form.type, alias: daterange }
+
+    itdoors_common.form_type.daterangecustom:
+        class: %itdoors_common.form_type.daterangecustom.class%
+        tags:
+            - { name: form.type, alias: daterangecustom }
