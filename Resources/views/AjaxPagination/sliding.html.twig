@@ -1,0 +1,48 @@
+{# default Sliding pagination control implementation #}
+
+{% if pageCount > 1 %}
+    <div class="pagination dataTables_paginate paging_bootstrap">
+        <ul class="pagination it-doors-pagination-holder"
+            data-success='{{ successFunctions|json_encode|raw }}'
+            data-url="{{ path('it_doors_ajax_paginator') }}"
+            data-pagination_namespace="{{ paginationNamespace }}"
+            style="visibility: visible;">
+            {% if first is defined and current != first %}
+                <li class="first">
+                    <a href="#" data-page="{{ first }}" class="it-doors-ajax-pagination-class">&lt;&lt;</a>
+                </li>
+            {% endif %}
+
+            {% if previous is defined %}
+                <li class="prev">
+                    <a href="#" data-page="{{ previous }}" class="it-doors-ajax-pagination-class">&lt;</a>
+                </li>
+            {% endif %}
+
+            {% for page in pagesInRange %}
+                {% if page != current %}
+                    <li class="page">
+                        <a href="#" data-page="{{ page }}" class="it-doors-ajax-pagination-class">{{ page }}</a>
+                    </li>
+                {% else %}
+                    <li class="active">
+                        <span>{{ page }}</span>
+                    </li>
+                {% endif %}
+
+            {% endfor %}
+
+            {% if next is defined %}
+                <li class="next">
+                    <a href="#" data-page="{{ next }}" class="it-doors-ajax-pagination-class">&gt;</a>
+                </li>
+            {% endif %}
+
+            {% if last is defined and current != last %}
+                <li class="last">
+                    <a href="#" data-page="{{ last }}" class="it-doors-ajax-pagination-class">&gt;&gt;</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}
