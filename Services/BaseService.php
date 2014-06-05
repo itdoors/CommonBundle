@@ -1,6 +1,7 @@
 <?php
 
 namespace ITDoors\CommonBundle\Services;
+
 use Symfony\Component\DependencyInjection\Container;
 
 /**
