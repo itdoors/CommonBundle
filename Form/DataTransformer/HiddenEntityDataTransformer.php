@@ -35,7 +35,7 @@ class HiddenEntityDataTransformer implements DataTransformerInterface
      *
      * @param object|null $object
      *
-     * @return int         id
+     * @return int id
      */
     public function transform($object)
     {

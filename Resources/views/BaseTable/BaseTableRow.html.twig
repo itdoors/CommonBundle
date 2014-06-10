@@ -1,0 +1,23 @@
+<td>
+
+
+{% if item.type == 'checkbox' %}
+
+    <input type="checkbox" name="{{ item.param.name }}" value="{{ item.value }}" class="{{ item.class }}"
+    {% if item.param.checked %}
+    checked
+    {% endif %}
+    >
+
+{% elseif item.type == 'text' %}
+
+    <span class="{{ item.class }}">{{ item.value }}</span>
+
+{% elseif item.type == 'link' %}
+
+    <a href="{{ item.param.href }}" target="{{ item.param.target }}" class="{{ item.class }}">{{ item.value }}</a>
+
+{% endif %}
+
+
+</td>
