@@ -3,9 +3,9 @@
     data-namespase="{{ tabNamespace }}"
     >
     {% for val in tabs %}
-    <li data-name {% if val.tab == tab  %} class="active"{% endif %}>
+    <li data-name {% if val.tab == tab  %} class="active"{% endif %} style="text-align: center">
             <a class="ajax-tab-class" href="#tab_{{ val.tab}}" data-tab="{{ val.tab}}" data-toggle="tab" data-block-update="{{ val.blockupdate}}" data-url="{{ val.url }}">
-                {{ val.text}}
+                {{ val.text | raw }}
             </a>
         </li>
     {% endfor %}
