@@ -25,6 +25,20 @@ services:
         tags:
             - { name: form.type, alias: daterangecustom }
 
+    itdoors_common.form_type.itdoors_select2:
+        class: %itdoors_common.form_type.itdoors_select2.class%
+        tags:
+            - { name: form.type, alias: itdoors_select2 }
+
+    itdoors_common.form_type.itdoors_date_decade:
+        class: %itdoors_common.form_type.itdoors_date_decade.class%
+        tags:
+            - { name: form.type, alias: itdoors_date_decade }
+
+    itdoors_common.base.service:
+        class: %itdoors_common.base.service.class%
+        arguments: [@service_container]
+
     itdoors_common.base_table.class:
         class: %itdoors_common.base_table.class%
         arguments: [@service_container]
