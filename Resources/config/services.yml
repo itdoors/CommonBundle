@@ -2,6 +2,10 @@ parameters:
     itdoors_common.hidden_entity.class: ITDoors\CommonBundle\Form\HiddenEntityType
     itdoors_common.form_type.daterange.class: ITDoors\CommonBundle\Form\DaterangeType
     itdoors_common.form_type.daterangecustom.class: ITDoors\CommonBundle\Form\DaterangeCustomType
+    itdoors_common.form_type.itdoors_select2.class: ITDoors\CommonBundle\Form\ITDoorsSelect2Type
+    itdoors_common.form_type.itdoors_date_decade.class: ITDoors\CommonBundle\Form\ITDoorsDateDecadeType
+    itdoors_common.base.service.class: ITDoors\CommonBundle\Services\BaseService
+    itdoors_common.base_table.class: ITDoors\CommonBundle\Twig\BaseTableExtension
 
 services:
 
@@ -20,3 +24,9 @@ services:
         class: %itdoors_common.form_type.daterangecustom.class%
         tags:
             - { name: form.type, alias: daterangecustom }
+
+    itdoors_common.base_table.class:
+        class: %itdoors_common.base_table.class%
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }
