@@ -57,11 +57,19 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function(){
+            if (Metronic) {
+                var rtl = Metronic.isRTL();
+            }
+
+            if (App) {
+                var rtl = App.isRTL();
+            }
+
             $('.itdoors-date-picker').datepicker({
-                rtl: App.isRTL(),
+                rtl: rtl,
                 autoclose: true,
                 format: "dd.mm.yyyy",
-                pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left"),
+                pickerPosition: (rtl ? "bottom-right" : "bottom-left"),
                 language: 'ru',
                 startView: 'decade',
                 weekStart: 1
