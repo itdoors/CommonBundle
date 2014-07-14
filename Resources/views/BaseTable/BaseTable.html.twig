@@ -3,7 +3,14 @@
         <thead>
         <tr>
         {% for header in headers %}
-            <th>{{ header|trans }}</th>
+            <th>
+                {{ header['value']|trans }}
+                {% if header['ordering'] %}
+                    <a href="" data-type="asc" data-field="{{ header['real'] }}">ASC</a>
+                    |
+                    <a href="" data-type="desc" data-field="{{ header['real'] }}">DESC</a>
+                {% endif %}
+            </th>
         {% endfor %}
         </tr>
         </thead>
