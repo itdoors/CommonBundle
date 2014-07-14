@@ -110,7 +110,7 @@ class BaseTableExtension extends \Twig_Extension
                     'type' => 'text',
                     'editable' => false,
                     'class' => '',
-                    'value' => $item,
+                    'value' => $item
                 );
                 if (!empty($this->options[$keyItem])) {
                     if (isset($this->options[$keyItem]['type'])) {
@@ -120,11 +120,17 @@ class BaseTableExtension extends \Twig_Extension
                             // if type checkbox
                             $dataPrepared[$keyRow][$keyItem]['param']['checked'] = false;
                             if (isset($this->options[$keyItem]['param']['checked'])
-                                && $this->options[$keyItem]['param']['checked']
+                                && $this->options[$keyItem]['param']['checked'] === true
                             ) {
                                 $dataPrepared[$keyRow][$keyItem]['param']['checked'] = true;
+                            } elseif (isset($this->options[$keyItem]['param']['checked'])
+                                && $this->options[$keyItem]['param']['checked'] == 'value') {
+                                $tempvalue = false;
+                                if ($dataPrepared[$keyRow][$keyItem]['value']) {
+                                    $tempvalue = true;
+                                }
+                                $dataPrepared[$keyRow][$keyItem]['param']['checked'] = $tempvalue;
                             }
-                            ;
                             // we need to create name
                             if (isset($this->options[$keyItem]['param']['pattern'])
                                 && isset($data[$keyRow][$this->options[$keyItem]['param']['index']])
@@ -160,8 +166,8 @@ class BaseTableExtension extends \Twig_Extension
                     if (isset($this->options[$keyItem]['editable'])) {
                         $dataPrepared[$keyRow][$keyItem]['editable'] = $this->options[$keyItem]['editable'];
                     }
-                    if (isset($this->options[$keyItem]['class'])) {
-                        $dataPrepared[$keyRow][$keyItem]['class'] = $this->options[$keyItem]['class'];
+                    if (isset($this->options[$keyItem]['param']['class'])) {
+                        $dataPrepared[$keyRow][$keyItem]['class'] = $this->options[$keyItem]['param']['class'];
                     }
                 }
             }
@@ -173,7 +179,7 @@ class BaseTableExtension extends \Twig_Extension
     }
 
     /**
-     * validate the oprions
+     * validate the options
      *
      * @return boolean
      */
@@ -196,17 +202,28 @@ class BaseTableExtension extends \Twig_Extension
     {
         $headers = array();
         if (empty($this->options)) {
-            $headers = array_keys($this->data[0]);
+            $headers['value'] = array_keys($this->data[0]);
+            $headers['real'] = array_keys($this->data[0]);;
         } else {
+            $i = 0;
             foreach (array_keys($this->data[0]) as $key) {
                 if (!$this->checkToShow($key)) {
                     continue;
                 }
                 if (array_key_exists($key, $this->options) && array_key_exists('header', $this->options[$key])) {
-                    $headers[] = $this->options[$key]['header'];
+                    $headers[$i]['value'] = $this->options[$key]['header'];
                 } else {
-                    $headers[] = $key;
+                    $headers[$i]['value'] = $key;
                 }
+                $headers[$i]['real'] = $key;
+
+                $headers[$i]['ordering'] = false;
+                if (array_key_exists($key, $this->options) && array_key_exists('ordering', $this->options[$key]['param'])) {
+                    if ($this->options[$key]['param']['ordering']) {
+                        $headers[$i]['ordering'] = $this->options[$key]['param']['ordering'];
+                    }
+                }
+                $i++;
             }
         }
 

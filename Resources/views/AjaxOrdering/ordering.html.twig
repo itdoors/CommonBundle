@@ -1,0 +1,29 @@
+    {% if ordered == 'asc' %}
+    ASC
+    {% else %}
+    <a href="#"
+       class = "it-doors-ordering"
+       data-type="asc"
+       data-field="{{ field }}"
+       data-success='{{ successFunctions|json_encode|raw }}'
+       data-url="{{ path('it_doors_ajax_ordering') }}"
+       data-ordering_namespace="{{ orderingNamespace }}"
+            >
+        ASC
+    </a>
+    {% endif %}
+|
+    {% if ordered == 'desc' %}
+        DESC
+    {% else %}
+        <a href="#"
+           class = "it-doors-ordering"
+           data-type="desc"
+           data-field="{{ field }}"
+           data-success='{{ successFunctions|json_encode|raw }}'
+           data-url="{{ path('it_doors_ajax_ordering') }}"
+           data-ordering_namespace="{{ orderingNamespace }}"
+                >
+            DESC
+        </a>
+    {% endif %}
