@@ -5,6 +5,7 @@ parameters:
     itdoors_common.form_type.itdoors_select2.class: ITDoors\CommonBundle\Form\ITDoorsSelect2Type
     itdoors_common.form_type.itdoors_date_decade.class: ITDoors\CommonBundle\Form\ITDoorsDateDecadeType
     itdoors_common.base.service.class: ITDoors\CommonBundle\Services\BaseService
+    itdoors_common.render.service.class: ITDoors\CommonBundle\Services\RenderService
     itdoors_common.base_table.class: ITDoors\CommonBundle\Twig\BaseTableExtension
 
 services:
@@ -37,6 +38,10 @@ services:
 
     itdoors_common.base.service:
         class: %itdoors_common.base.service.class%
+        arguments: [@service_container]
+
+    itdoors_common.render.service:
+        class: %itdoors_common.render.service.class%
         arguments: [@service_container]
 
     itdoors_common.base_table.class:

@@ -1,4 +1,6 @@
+
 <div class="table-scrollable">
+    {{ holder }}
     <table class="table table-striped table-hover table-bordered">
         <thead>
         <tr>
@@ -6,9 +8,9 @@
             <th>
                 {{ header['value']|trans }}
                 {% if header['ordering'] %}
-                    <a href="" data-type="asc" data-field="{{ header['real'] }}">ASC</a>
-                    |
-                    <a href="" data-type="desc" data-field="{{ header['real'] }}">DESC</a>
+                    {{ ajax_ordering(header['real'], namespace, {
+                    (holder) : 'ITDoorsAjax.updateList'
+                    }) }}
                 {% endif %}
             </th>
         {% endfor %}
@@ -16,7 +18,6 @@
         </thead>
 
         <tbody>
-
 
         {% for dataRow in data %}
             <tr>

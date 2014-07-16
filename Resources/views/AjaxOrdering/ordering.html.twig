@@ -1,5 +1,5 @@
     {% if ordered == 'asc' %}
-    ASC
+        <span style="color: #aaaaaa">&#9660;</span>
     {% else %}
     <a href="#"
        class = "it-doors-ordering"
@@ -9,12 +9,12 @@
        data-url="{{ path('it_doors_ajax_ordering') }}"
        data-ordering_namespace="{{ orderingNamespace }}"
             >
-        ASC
+        &#9660;
     </a>
     {% endif %}
-|
+
     {% if ordered == 'desc' %}
-        DESC
+        <span style="color: #aaaaaa">&#9650;</span>
     {% else %}
         <a href="#"
            class = "it-doors-ordering"
@@ -24,6 +24,6 @@
            data-url="{{ path('it_doors_ajax_ordering') }}"
            data-ordering_namespace="{{ orderingNamespace }}"
                 >
-            DESC
+            &#9650;
         </a>
     {% endif %}

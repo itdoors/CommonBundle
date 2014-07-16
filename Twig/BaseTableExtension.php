@@ -39,6 +39,16 @@ class BaseTableExtension extends \Twig_Extension
     private $options;
 
     /**
+     * @var string
+     */
+    private $namespace;
+
+    /**
+     * @var string
+     */
+    private $holder;
+
+    /**
      * {@inheritDoc}
      */
     public function initRuntime(\Twig_Environment $environment)
@@ -71,21 +81,25 @@ class BaseTableExtension extends \Twig_Extension
      *
      * @param mixed[] $data
      * @param mixed[] $options
-     * @param string  $pattern
+     * @param string  $namespace
+     * @param string  $holder
      *
      * @return Response
      */
-    public function render(array $data, array $options = array(), $pattern = '')
+    public function render(array $data, array $options = array(), $namespace, $holder)
     {
         $this->setData($data);
         $this->setOptions($options);
-        $this->setPattern($pattern);
+        $this->setNamespace($namespace);
+        $this->setHolder($holder);
         $headers = $this->getTableHeaders();
         $dataPrepared = $this->getTableData();
 
         return $this->environment->render($this->patternTable, array(
             'headers' => $headers,
-            'data' => $dataPrepared
+            'data' => $dataPrepared,
+            'holder' => $this->holder,
+            'namespace' => $this->namespace,
 
         ));
     }
@@ -283,5 +297,25 @@ class BaseTableExtension extends \Twig_Extension
         if ($pattern) {
             $this->patternTable = $pattern;
         }
+    }
+
+    /**
+     * setter for $holder
+     *
+     * @param string $holder
+     */
+    protected function setHolder($holder)
+    {
+        $this->holder = $holder;
+    }
+
+    /**
+     * setter for $namespace
+     *
+     * @param string $namespace
+     */
+    protected function setNamespace($namespace)
+    {
+        $this->namespace = $namespace;
     }
 }
