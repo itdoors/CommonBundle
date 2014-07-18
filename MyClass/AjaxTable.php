@@ -82,7 +82,13 @@ class AjaxTable
 */
     }
 
-    public function findColumn($columnName) {
+    /**
+     * @param string $columnName
+     *
+     * @return bool|mixed
+     */
+    public function findColumn($columnName)
+    {
         $columns = $this->getColumns();
 
         if (!count($columns)) {
@@ -98,7 +104,12 @@ class AjaxTable
         return false;
     }
 
-    public function copyColumn($searchColumn, $newColumn) {
+    /**
+     * @param string $searchColumn
+     * @param string $newColumn
+     */
+    public function copyColumn($searchColumn, $newColumn)
+    {
         $search = $this->findColumn($searchColumn);
 
         $new = clone $search;
@@ -106,14 +117,18 @@ class AjaxTable
         $this->columns[] =  $new;
     }
 
-    public function showColumn($column) {
+    /**
+     * @param string $column
+     */
+    public function showColumn($column)
+    {
         $allColumns = $this->getColumns();
         foreach ($allColumns as $column) {
             $column->setShow(false);
         }
 
         if (is_array($column)) {
-            foreach($column as $columnShow) {
+            foreach ($column as $columnShow) {
                 $search = $this->findColumn($columnShow);
                 $search->setShow(true);
             }
@@ -123,14 +138,18 @@ class AjaxTable
         }
     }
 
-    public function hideColumn($column) {
+    /**
+     * @param string $column
+     */
+    public function hideColumn($column)
+    {
         $allColumns = $this->getColumns();
         foreach ($allColumns as $column) {
             $column->setShow(true);
         }
 
         if (is_array($column)) {
-            foreach($column as $columnHide) {
+            foreach ($column as $columnHide) {
                 $search = $this->findColumn($columnHide);
                 $search->setShow(false);
             }
@@ -140,7 +159,13 @@ class AjaxTable
         }
     }
 
-    public function concateColumns($columnSearch1, $columnSearch2, $outputColumn) {
+    /**
+     * @param string $columnSearch1
+     * @param string $columnSearch2
+     * @param string $outputColumn
+     */
+    public function concateColumns($columnSearch1, $columnSearch2, $outputColumn)
+    {
         $column1 = $this->findColumn($columnSearch1);
         $column2 = $this->findColumn($columnSearch2);
 
@@ -209,12 +234,10 @@ class AjaxTable
     }
 
     /**
-     * getter for $columns
+     * @return mixed[]
      */
     protected function getColumns()
     {
         return $this->columns;
     }
-
-
 }

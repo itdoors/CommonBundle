@@ -5,74 +5,132 @@ namespace ITDoors\CommonBundle\MyClass;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 
+namespace ITDoors\CommonBundle\MyClass;
+
 /**
  * AjaxTable
  *
  * This class to create ajax table
  */
-namespace ITDoors\CommonBundle\MyClass;
+class AjaxTableColumn
+{
 
-
-class AjaxTableColumn {
-
+    /**
+     * @var string
+     */
     private $name;
 
+    /**
+     * @var string
+     */
     private $header;
 
+    /**
+     * @var string
+     */
     private $type;
 
+    /**
+     * @var bool
+     */
     private $show;
 
+    /**
+     * @var string
+     */
     private $condition;
 
-
-    public function __construct($name) {
+    /**
+     * @param string $name
+     */
+    public function __construct($name)
+    {
         $this->setName($name);
         $this->setHeader($name);
         $this->setType('text');
         $this->setShow(true);
     }
 
-    protected function setName($name) {
+    /**
+     * @param string $name
+     */
+    protected function setName($name)
+    {
         $this->name = $name;
     }
 
-    protected function getName() {
+    /**
+     * @return string
+     */
+    protected function getName()
+    {
         return $this->name;
     }
 
-    protected function setHeader($header) {
+    /**
+     * @param string $header
+     */
+    protected function setHeader($header)
+    {
         $this->header = $header;
     }
 
-    protected function getHeader() {
+    /**
+     * @return string
+     */
+    protected function getHeader()
+    {
         return $this->header;
     }
 
-    protected function setType($type) {
+    /**
+     * @param string $type
+     */
+    protected function setType($type)
+    {
         $type = ucfirst(strtolower($type));
         $className = 'ITDoors\CommonBundle\MyClass\AjaxTableType'.$type;
         $newType =  new $className;
         $this->type = $newType;
     }
 
-    protected function getType() {
+    /**
+     * @return string
+     */
+    protected function getType()
+    {
         return $this->type;
     }
 
-    protected function setCondition($condition) {
+    /**
+     * @param string $condition
+     */
+    protected function setCondition($condition)
+    {
         $this->condition = $condition;
     }
 
-    protected function getCondition() {
+    /**
+     * @return string
+     */
+    protected function getCondition()
+    {
         return $this->condition;
     }
 
-    protected function setShow($show) {
+    /**
+     * @param bool $show
+     */
+    protected function setShow($show)
+    {
         $this->show = $show;
     }
 
-    protected function getShow() {
+    /**
+     * @return bool
+     */
+    protected function getShow()
+    {
         return $this->show;
     }
-} 
+}

@@ -22,6 +22,7 @@ class RenderService
     /**
      * @param string  $template
      * @param mixed[] $info
+     *
      * @return array
      */
     public function renderByInfo($template, $info)

@@ -12,7 +12,11 @@ use ITDoors\CommonBundle\MyClass\AjaxTableColumn;
  */
 class AjaxTableCell
 {
-    public function render() {
+    /**
+     * @return void
+     */
+    public function render()
+    {
 
     }
 }

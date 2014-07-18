@@ -12,5 +12,8 @@ use ITDoors\CommonBundle\MyClass\AjaxTableColumn;
  */
 interface AjaxTableTypeInterface
 {
+    /**
+     * @return mixed
+     */
     public function render();
 }

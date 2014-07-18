@@ -86,7 +86,7 @@ class BaseTableExtension extends \Twig_Extension
      *
      * @return Response
      */
-    public function render(array $data, array $options = array(), $namespace, $holder)
+    public function render(array $data, array $options = array(), $namespace = '', $holder = '')
     {
         $this->setData($data);
         $this->setOptions($options);
