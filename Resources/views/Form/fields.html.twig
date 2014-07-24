@@ -48,6 +48,17 @@
     </script>
 {% endblock %}
 
+{% block itdoors_choice_widget %}
+    {{ block('choice_widget') }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            if (ITDoorsAjax) {
+                ITDoorsAjax.select2($('#{{ form.vars.id }}'));
+            }
+        });
+    </script>
+{% endblock %}
+
 {% block itdoors_date_decade_widget %}
     <div class="input-group input-medium date itdoors-date-picker">
         {{ block('date_widget') }}
@@ -57,13 +68,8 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function(){
-            if (Metronic) {
-                var rtl = Metronic.isRTL();
-            }
 
-            if (App) {
-                var rtl = App.isRTL();
-            }
+            var rtl = false;
 
             $('.itdoors-date-picker').datepicker({
                 rtl: rtl,

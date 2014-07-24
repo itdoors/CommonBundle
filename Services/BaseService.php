@@ -31,4 +31,23 @@ class BaseService
             'Yes' => $this->container->get('translator')->trans("Yes", array(), 'messages')
         );
     }
+
+    /**
+     * Returns numbers from - to choices
+     *
+     * @param int $from
+     * @param int $to
+     *
+     * @return mixed[]
+     */
+    public function getNumberChoices($from, $to)
+    {
+        $result = array();
+
+        for ($i = $from; $i <= $to; $i++) {
+            $result[$i] = $i;
+        }
+
+        return $result;
+    }
 }
