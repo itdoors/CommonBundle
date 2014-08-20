@@ -24,15 +24,8 @@ class ExportService
 
     /**
      * getExel
-     *   $services = $this->container->get('itdoors_common.export.service');
-     *   $phpExcelObject =  $services->getExcel($data);
-     *   $writer = $this->container->get('phpexcel')->createWriter($phpExcelObject, 'Excel5');
-     *   $response = $this->container->get('phpexcel')->createStreamedResponse($writer);
-     *   $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
-     *   $response->headers->set('Content-Disposition', 'attachment;filename=file.xls');
-     *   $response->headers->set('Pragma', 'public');
-     *   $response->headers->set('Cache-Control', 'maxage=1');
-     *   return $response;
+     * $services = $this->container->get('itdoors_common.export.service');
+     * $phpExcelObject =  $services->getExcel($data);
      * 
      * @param mixed[] $data
      *
@@ -77,13 +70,29 @@ class ExportService
         $phpExcelObject->getActiveSheet()->getStyle('A2:AQ'.$str)->getAlignment()->setWrapText(true);
         $phpExcelObject->getActiveSheet()->freezePane('AB2');
         $phpExcelObject->getActiveSheet()->setTitle('List');
-//        $writer = $this->container->get('phpexcel')->createWriter($phpExcelObject, 'Excel5');
-//        $response = $this->container->get('phpexcel')->createStreamedResponse($writer);
-//        $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
-//        $response->headers->set('Content-Disposition', 'attachment;filename=file.xls');
-//        $response->headers->set('Pragma', 'public');
-//        $response->headers->set('Cache-Control', 'maxage=1');
 
         return $phpExcelObject;
+    }
+
+    /**
+     * getResponse
+     * $services = $this->container->get('itdoors_common.export.service');
+     * $response =  $services->getResponse($phpExcelObject, $fileName);
+     * return $response;
+     * 
+     * @param object $phpExcelObject
+     * @param string $fileName
+     * 
+     * @return response
+     */
+    public function getResponse($phpExcelObject, $fileName) {
+        $writer = $this->container->get('phpexcel')->createWriter($phpExcelObject, 'Excel5');
+        $response = $this->container->get('phpexcel')->createStreamedResponse($writer);
+        $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
+        $response->headers->set('Content-Disposition', 'attachment;filename='.$fileName.'.xls');
+        $response->headers->set('Pragma', 'public');
+        $response->headers->set('Cache-Control', 'maxage=1');
+
+        return $response;
     }
 }
