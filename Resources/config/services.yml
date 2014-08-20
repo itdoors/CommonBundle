@@ -8,6 +8,7 @@ parameters:
     itdoors_common.base.service.class: ITDoors\CommonBundle\Services\BaseService
     itdoors_common.render.service.class: ITDoors\CommonBundle\Services\RenderService
     itdoors_common.base_table.class: ITDoors\CommonBundle\Twig\BaseTableExtension
+    itdoors_common.export.service.class: ITDoors\CommonBundle\Services\ExportService
 
 services:
 
@@ -55,3 +56,7 @@ services:
         arguments: [@service_container]
         tags:
             - { name: twig.extension }
+            
+    itdoors_common.export.service:
+        class: %itdoors_common.export.service.class%
+        arguments: [@service_container]
