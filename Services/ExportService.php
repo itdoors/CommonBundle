@@ -85,7 +85,8 @@ class ExportService
      * 
      * @return response
      */
-    public function getResponse($phpExcelObject, $fileName) {
+    public function getResponse($phpExcelObject, $fileName)
+    {
         $writer = $this->container->get('phpexcel')->createWriter($phpExcelObject, 'Excel5');
         $response = $this->container->get('phpexcel')->createStreamedResponse($writer);
         $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
