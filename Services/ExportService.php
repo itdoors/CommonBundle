@@ -67,7 +67,7 @@ class ExportService
             ->getStyle('A1:AQ1')
             ->getAlignment()
             ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        $phpExcelObject->getActiveSheet()->getStyle('A2:AQ'.$str)->getAlignment()->setWrapText(true);
+        //$phpExcelObject->getActiveSheet()->getStyle('A2:AQ'.$str)->getAlignment()->setWrapText(true);
         $phpExcelObject->getActiveSheet()->freezePane('AB2');
         $phpExcelObject->getActiveSheet()->setTitle('List');
 
