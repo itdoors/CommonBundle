@@ -59,7 +59,13 @@ class ExportService
                 $col = 0;
                 ++$str;
                 foreach ($keys as $key) {
-                    $phpExcelObject->getActiveSheet()->setCellValueByColumnAndRow($col++, $str, $val[$key]);
+                    $value = $val[$key];
+                    if (gettype($value) ==  'object') {
+                        if (get_class($value) == 'DateTime') {
+                            $value = $value->format('Y-m-d H:i:s');
+                        }
+                    }
+                    $phpExcelObject->getActiveSheet()->setCellValueByColumnAndRow($col++, $str, $value);
                 }
             }
         }
