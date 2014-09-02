@@ -1,4 +1,5 @@
 <?php
+
 namespace ITDoors\CommonBundle\MyClass;
 
 use Doctrine\ORM\EntityRepository;

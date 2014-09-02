@@ -1,4 +1,5 @@
 <?php
+
 namespace ITDoors\CommonBundle\MyClass;
 
 use Doctrine\ORM\EntityRepository;
@@ -15,7 +16,7 @@ class AjaxTableCell
     /**
      * @return void
      */
-    public function render()
+    public function render ()
     {
 
     }
