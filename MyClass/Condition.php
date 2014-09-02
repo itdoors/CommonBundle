@@ -24,5 +24,4 @@ class Condition
     private $columnResult;
 
     private $changes;
-
 }

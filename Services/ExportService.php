@@ -53,7 +53,9 @@ class ExportService
             $str = 1;
             $col = 0;
             foreach ($keys as $key) {
-                $phpExcelObject->getActiveSheet()->setCellValueByColumnAndRow($col++, $str, $translator->trans($key, array(), 'ITDoorsCommonBundle'));
+                $transHeader = $translator->trans($key, array(), 'ITDoorsCommonBundle');
+                $phpExcelObject->getActiveSheet()
+                    ->setCellValueByColumnAndRow($col++, $str, $transHeader);
             }
             foreach ($data as $val) {
                 $col = 0;

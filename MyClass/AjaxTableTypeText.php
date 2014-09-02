@@ -32,5 +32,4 @@ class AjaxTableTypeText implements AjaxTableTypeInterface
     {
 
     }
-
-} 
+}
