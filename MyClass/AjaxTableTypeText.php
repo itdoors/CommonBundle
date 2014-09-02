@@ -28,7 +28,7 @@ class AjaxTableTypeText implements AjaxTableTypeInterface
     /**
      * @return void
      */
-    public function render()
+    public function render ()
     {
 
     }

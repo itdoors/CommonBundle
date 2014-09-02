@@ -13,15 +13,11 @@ use ITDoors\CommonBundle\MyClass\AjaxTableColumn;
  */
 class Condition
 {
+
     private $columnAffected;
-
     private $conditionSign;
-
     private $value;
-
     private $columnCompared;
-
     private $columnResult;
-
     private $changes;
 }

@@ -12,16 +12,16 @@ use PHPExcel_Style_Fill;
  */
 class ExportService
 {
+
     protected $container;
 
     /**
      * @param Container $container
      */
-    public function __construct(Container $container)
+    public function __construct (Container $container)
     {
         $this->container = $container;
     }
-
     /**
      * getExel
      * $services = $this->container->get('itdoors_common.export.service');
@@ -31,7 +31,7 @@ class ExportService
      *
      * @return object
      */
-    public function getExcel($data)
+    public function getExcel ($data)
     {
         /** @var Translator $translator */
         $translator = $this->container->get('translator');
@@ -62,7 +62,7 @@ class ExportService
                 ++$str;
                 foreach ($keys as $key) {
                     $value = $val[$key];
-                    if (gettype($value) ==  'object') {
+                    if (gettype($value) == 'object') {
                         if (get_class($value) == 'DateTime') {
                             $value = $value->format('Y-m-d H:i:s');
                         }
@@ -81,7 +81,6 @@ class ExportService
 
         return $phpExcelObject;
     }
-
     /**
      * getResponse
      * $services = $this->container->get('itdoors_common.export.service');
@@ -93,12 +92,12 @@ class ExportService
      * 
      * @return response
      */
-    public function getResponse($phpExcelObject, $fileName)
+    public function getResponse ($phpExcelObject, $fileName)
     {
         $writer = $this->container->get('phpexcel')->createWriter($phpExcelObject, 'Excel5');
         $response = $this->container->get('phpexcel')->createStreamedResponse($writer);
         $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
-        $response->headers->set('Content-Disposition', 'attachment;filename='.$fileName.'.xls');
+        $response->headers->set('Content-Disposition', 'attachment;filename=' . $fileName . '.xls');
         $response->headers->set('Pragma', 'public');
         $response->headers->set('Cache-Control', 'maxage=1');
 
