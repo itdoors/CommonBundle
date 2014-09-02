@@ -4,3 +4,23 @@ position: Должность
 phone1: Телефон №1
 phone2: Телефон №2
 email: email
+
+departmentName: Отделение
+organizationName: Организация
+birthday: Дата рождения
+lastName: Фамилия
+firstName: Имя
+middleName: Отчество
+idCoworker: id Сотрудника
+idDepartment: id Отделения
+drfo: дрфо
+address: адрес
+phone: Телефон
+passport: паспорт
+sumOfficiallyHours: Сумма оф. часы
+sumNotOfficiallyHours: Сумма подряд часы
+salaryOfficially: зп официальная
+salaryNotOfficially: зп подряд
+totalSalary: сумарная зп
+officiallAcrual: оф. начисления
+notOfficiallAcrual: подряд начисления
