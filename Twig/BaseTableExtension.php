@@ -217,7 +217,7 @@ class BaseTableExtension extends \Twig_Extension
         $headers = array();
         if (empty($this->options)) {
             $headers['value'] = array_keys($this->data[0]);
-            $headers['real'] = array_keys($this->data[0]);;
+            $headers['real'] = array_keys($this->data[0]);
         } else {
             $i = 0;
             foreach (array_keys($this->data[0]) as $key) {
@@ -232,7 +232,11 @@ class BaseTableExtension extends \Twig_Extension
                 $headers[$i]['real'] = $key;
 
                 $headers[$i]['ordering'] = false;
-                if (array_key_exists($key, $this->options) && array_key_exists('ordering', $this->options[$key]['param'])) {
+                if (
+                        array_key_exists($key, $this->options)
+                        &&
+                        array_key_exists('ordering', $this->options[$key]['param'])
+                    ) {
                     if ($this->options[$key]['param']['ordering']) {
                         $headers[$i]['ordering'] = $this->options[$key]['param']['ordering'];
                     }
