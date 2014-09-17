@@ -20,5 +20,4 @@ class Condition
     private $columnCompared;
     private $columnResult;
     private $changes;
-
 }
