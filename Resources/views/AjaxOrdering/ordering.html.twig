@@ -4,6 +4,7 @@
     <a href="#"
        class = "it-doors-ordering"
        data-type="asc"
+       data-one_field="{{ oneField }}"
        data-field="{{ field }}"
        data-success='{{ successFunctions|json_encode|raw }}'
        data-url="{{ path('it_doors_ajax_ordering') }}"
@@ -19,6 +20,7 @@
         <a href="#"
            class = "it-doors-ordering"
            data-type="desc"
+           data-one_field="{{ oneField }}"
            data-field="{{ field }}"
            data-success='{{ successFunctions|json_encode|raw }}'
            data-url="{{ path('it_doors_ajax_ordering') }}"
