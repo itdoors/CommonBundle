@@ -31,7 +31,7 @@ class ExportService
      *
      * @return object
      */
-    public function getExcel ($data)
+    public function getExcel ($data, $transNamespace = 'ITDoorsCommonBundle')
     {
         /** @var Translator $translator */
         $translator = $this->container->get('translator');
@@ -53,7 +53,7 @@ class ExportService
             $str = 1;
             $col = 0;
             foreach ($keys as $key) {
-                $transHeader = $translator->trans($key, array(), 'ITDoorsCommonBundle');
+                $transHeader = $translator->trans($key, array(), $transNamespace);
                 $phpExcelObject->getActiveSheet()
                     ->setCellValueByColumnAndRow($col++, $str, $transHeader);
             }
