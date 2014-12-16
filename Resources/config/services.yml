@@ -3,6 +3,10 @@ parameters:
     itdoors_common.form_type.daterange.class: ITDoors\CommonBundle\Form\DaterangeType
     itdoors_common.form_type.daterangecustom.class: ITDoors\CommonBundle\Form\DaterangeCustomType
     itdoors_common.form_type.itdoors_select2.class: ITDoors\CommonBundle\Form\ITDoorsSelect2Type
+    itdoors_common.form_type.itdoors_select2_entity.class: ITDoors\CommonBundle\Form\ITDoorsSelect2EntityType
+    itdoors_common.form_type.itdoors_select2_dependent.class: ITDoors\CommonBundle\Form\ITDoorsSelect2DependentType
+    itdoors_common.form_type.itdoors_dependent_listener_select2.class: ITDoors\CommonBundle\Form\ITDoorsDependentListenerSelect2Type
+    itdoors_common.form_type.itdoors_dependent_listener_select2_to_select2.class: ITDoors\CommonBundle\Form\ITDoorsDependentListenerSelect2ToSelect2Type
     itdoors_common.form_type.itdoors_choice.class: ITDoors\CommonBundle\Form\ITDoorsChoiceType
     itdoors_common.form_type.itdoors_date_decade.class: ITDoors\CommonBundle\Form\ITDoorsDateDecadeType
     itdoors_common.base.service.class: ITDoors\CommonBundle\Services\BaseService
@@ -32,6 +36,28 @@ services:
         class: %itdoors_common.form_type.itdoors_select2.class%
         tags:
             - { name: form.type, alias: itdoors_select2 }
+            
+    itdoors_common.form_type.itdoors_select2_entity:
+        class: %itdoors_common.form_type.itdoors_select2_entity.class%
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: itdoors_select2_entity }
+
+    itdoors_common.form_type.itdoors_select2_dependent:
+        class: %itdoors_common.form_type.itdoors_select2_dependent.class%
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: itdoors_select2_dependent }
+
+    itdoors_common.form_type.itdoorsDependentListenerLelect2:
+        class: %itdoors_common.form_type.itdoors_dependent_listener_select2.class%
+        tags:
+            - { name: form.type, alias: itdoors_dependent_listener_select2 }
+
+    itdoors_common.form_type.itdoorsDependentListenerLelect2ToSelect2:
+        class: %itdoors_common.form_type.itdoors_dependent_listener_select2_to_select2.class%
+        tags:
+            - { name: form.type, alias: itdoors_dependent_listener_select2_to_select2 }
 
     itdoors_common.form_type.itdoors_choice:
         class: %itdoors_common.form_type.itdoors_choice.class%
@@ -60,3 +86,4 @@ services:
     itdoors_common.export.service:
         class: %itdoors_common.export.service.class%
         arguments: [@service_container]
+

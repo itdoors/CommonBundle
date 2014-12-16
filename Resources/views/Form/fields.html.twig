@@ -48,6 +48,59 @@
     </script>
 {% endblock %}
 
+{% block itdoors_select2_entity_widget %}
+    {% set type = type|default('text') %}
+    {{ block('hidden_widget') }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            if (ITDoorsAjax) {
+                ITDoorsAjax.select2($('#{{ form.vars.id }}'));
+            }
+        });
+    </script>
+{% endblock %}
+
+
+{% block itdoors_select2_dependent_widget %}
+    {% set type = type|default('text') %}
+    {{ block('hidden_widget') }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            if (ITDoorsAjax) {
+                ITDoorsAjax.select2Dependent($('#{{ form.vars.id }}'));
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block money_widget -%}
+    {{  block('form_widget_simple') }}
+{%- endblock money_widget %}
+
+{% block itdoors_dependent_listener_select2_to_select2_widget %}
+    {% set type = type|default('text') %}
+    {{ block('hidden_widget') }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            if (ITDoorsAjax) {
+                ITDoorsAjax.select2DependentToSelect2($('#{{ form.vars.id }}'));
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block itdoors_dependent_listener_select2_widget %}
+    {{ block('hidden_widget') }}
+    <div id="{{ form.vars.id }}Div"></div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            if (ITDoorsAjax) {
+                ITDoorsAjax.select2ListenerDependent($('#{{ form.vars.id }}'));
+            }
+        });
+    </script>
+{% endblock %}
+
 {% block itdoors_choice_widget %}
     {{ block('choice_widget') }}
     <script type="text/javascript">

@@ -39,7 +39,7 @@ class HiddenEntityDataTransformer implements DataTransformerInterface
      */
     public function transform($object)
     {
-        if (null === $object) {
+        if (null === $object || $object == '') {
             return "";
         }
 
