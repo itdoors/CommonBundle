@@ -28,6 +28,7 @@ class ExportService
      * $phpExcelObject =  $services->getExcel($data);
      * 
      * @param mixed[] $data
+     * @param string  $transNamespace
      *
      * @return object
      */
