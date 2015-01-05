@@ -16,7 +16,15 @@
 
 
 {% block hidden_row %}
-    {{ form_widget(form) }}
+    <div class="form-group
+    {% if form.vars.attr.class_outer is defined  %}
+        {{ form.vars.attr.class_outer }}
+        {% else %}
+            col-md-3
+        {% endif %}"
+    >
+        {{ form_widget(form) }}
+    </div>
 {% endblock hidden_row %}
 
 {% block form_errors %}
