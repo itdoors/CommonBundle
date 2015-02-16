@@ -14,6 +14,63 @@
     </div>
 {% endblock form_row %}
 
+{%- block form_rows_file -%}
+    {% for child in prototype %}
+        {{ form_errors(child) }}
+        {{ form_widget(child) }}
+    {% endfor %}
+{%- endblock form_rows_file -%}
+
+
+{%- block collection_widget -%}
+    {% if prototype is defined %}
+        {%- set attr = attr|merge({'data-prototype':  form_errors(prototype) ~ '<span '~  block('widget_container_attributes') ~'>'
+       ~ block('form_rows_file')  ~'</span>'  }) -%}
+    {% endif %}
+    <ul {{ block('widget_container_attributes') }}>
+        {%- if form.parent is empty -%}
+            {{ form_errors(form) }}
+        {%- endif -%}
+    </ul>
+    <script>
+        var $collectionHolder{{ id }};
+        var $addTagLink = $('<a class="" href="#">{% trans %}Add a file{% endtrans %}</a>');
+        var $newLinkLi{{ id }} = $('<li class="margin-top-10 margin-buttom-10"></li>').append($addTagLink);
+
+        $(document).ready(function(){
+            $collectionHolder{{ id }} = $('ul#{{ id }}');
+            $collectionHolder{{ id }}.find('li').each(function() {
+                addTagFormDeleteLink($(this));
+            });
+            $collectionHolder{{ id }}.append($newLinkLi{{ id }});
+            $collectionHolder{{ id }}.data('index', $collectionHolder{{ id }}.find(':input').length);
+            $addTagLink.on('click', function(e) {
+                e.preventDefault();
+                addTagForm{{ id }}($collectionHolder{{ id }}, $newLinkLi{{ id }});
+            });
+
+        });
+        function addTagForm{{ id }}($collectionHolder, $newLinkLi) {
+            var prototype = $collectionHolder.data('prototype');
+            var index = $collectionHolder.data('index');
+            var newForm = prototype.replace(/__name__/g, index);
+            $collectionHolder.data('index', index + 1);
+            var $newFormLi = $('<li class="margin-top-10 margin-buttom-10"></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+            addTagFormDeleteLink{{ id }}($newFormLi);
+        }
+
+        function addTagFormDeleteLink{{ id }}($tagFormLi) {
+            var $removeFormA = $('<a href="#">{% trans%}Delete{% endtrans %}</a>');
+            $tagFormLi.prepend($removeFormA);
+            $removeFormA.on('click', function(e) {
+                e.preventDefault();
+                $tagFormLi.remove();
+            });
+        }
+    </script>
+{%- endblock collection_widget -%}
+
 
 {% block hidden_row %}
     <div class="form-group
