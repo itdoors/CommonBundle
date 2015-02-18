@@ -38,7 +38,7 @@
         var $newLinkLi{{ id }} = $('<li class="margin-top-10 margin-buttom-10"></li>').append($addTagLink);
 
         $(document).ready(function(){
-            $collectionHolder{{ id }} = $('ul#{{ id }}');
+            $collectionHolder{{ id }} = $('#{{ id }}');
             $collectionHolder{{ id }}.find('li').each(function() {
                 addTagFormDeleteLink($(this));
             });
